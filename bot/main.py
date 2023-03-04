@@ -16,8 +16,14 @@ intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
 
+# create a filter for the `mint` event
+event_filter = contract.events.mint.createFilter(fromBlock='latest')
 
-
+# loop indefinitely, listening for new events
+while True:
+    # wait for the filter to match a new event
+    events = event_filter.get_new_entries()
+    
 # Define Discord bot client
 client = discord.Client(intents=intents)
 
@@ -44,16 +50,15 @@ async def on_ready():
         for event in contract_event_filter.get_new_entries():
             handle_event(event)
 
-            # listen for the contract's Minted event
-@contract.events('mint')
-async def handle_minted_event(sender, event):
-    # get the address of the account that minted the tokens
-    minter = event['args']['minter']
+           # process each new event
+    for event in events:
+        # get the address of the account that minted the tokens
+        minter = event['args']['minter']
 
-    # send a message to the Discord channel with the minter's address
-    channel_id = 1234567890  # replace with the ID of your Discord channel
-    channel = client.get_channel(channel_id)
-    await channel.send(f'{minter} got some Vibes!')
+        # send a message to the Discord channel with the minter's address
+        channel_id = 1234567890  # replace with the ID of your Discord channel
+        channel = client.get_channel(channel_id)
+        await channel.send(f'{minter} got some Vibes!')
     
 @bot.event
 async def on_ready():
