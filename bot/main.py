@@ -39,7 +39,7 @@ async def on_ready():
     print(f"Logged in as {client.user}")
 
     # Subscribe to smart contract events
-    contract_event_filter = contract.events.Mint.createFilter(fromBlock='latest')
+    contract_event_filter = contract.events.mint.createFilter(fromBlock='latest')
     while True:
         for event in contract_event_filter.get_new_entries():
             handle_event(event)
