@@ -16,6 +16,9 @@ intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
 
+# Define Discord bot client
+client = discord.Client()
+
 bot = commands.Bot(command_prefix='!', intents=intents)
 
 # Define event listener function
