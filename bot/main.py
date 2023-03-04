@@ -32,7 +32,7 @@ contract_abi = [{
 			"outputs": [],
 			"stateMutability": "payable",
 			"type": "function"
-		}}
+		}]
 contract = w3.eth.contract(address=contract_address, abi=contract_abi)
 channel_id = 1081427953713430538  # replace with the ID of your Discord channel
 
