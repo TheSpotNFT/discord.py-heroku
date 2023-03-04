@@ -56,7 +56,7 @@ async def on_ready():
         minter = event['args']['minter']
 
         # send a message to the Discord channel with the minter's address
-        channel_id = 1234567890  # replace with the ID of your Discord channel
+        channel_id = 1081427953713430538  # replace with the ID of your Discord channel
         channel = client.get_channel(channel_id)
         await channel.send(f'{minter} got some Vibes!')
     
