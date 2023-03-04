@@ -1,7 +1,7 @@
 import discord
 import os
 from discord.ext import commands
-
+#this is a test bot
 intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
