@@ -45,7 +45,7 @@ async def on_ready():
             handle_event(event)
 
             # listen for the contract's Minted event
-@contract.on('Minted')
+@contract.on('mint')
 async def handle_minted_event(sender, event):
     # get the address of the account that minted the tokens
     minter = event['args']['minter']
