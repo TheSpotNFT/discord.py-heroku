@@ -42,7 +42,7 @@ intents.members = True
 intents.message_content = True
 
 # create a filter for the `mint` event
-event_filter = contract.function.mint.createFilter(fromBlock='latest')
+event_filter = contract.functions.mint.createFilter(fromBlock='latest')
 
 # loop indefinitely, listening for new events
 while True:
@@ -70,13 +70,13 @@ async def on_ready():
     print(f"Logged in as {client.user}")
 
     # Subscribe to smart contract events
-    contract_event_filter = contract.function.mint.createFilter(fromBlock='latest')
+    contract_event_filter = contract.functions.mint.createFilter(fromBlock='latest')
     while True:
         for event in contract_event_filter.get_new_entries():
             handle_event(event)
 
 # Define the Transfer event
-Transfer: ContractEvent = contract.function.Transfer()
+Transfer: ContractEvent = contract.events.Transfer()
 
 # Define a task that listens for new minted tokens
 @tasks.loop(seconds=10)
